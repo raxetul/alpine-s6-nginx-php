@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  nginx:
+    container_name: nginx-php
+    image: alpine-s6-nginx-php
+    volumes:
+      - ./conf:/conf
+      - ./log:/log
+      - ./web:/web:rw
+      - ./data:/data:rw
+    ports:
+      - 8000:80
