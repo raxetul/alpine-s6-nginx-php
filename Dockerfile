@@ -44,6 +44,7 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && sed -i "s/user = nobody/user = nginx/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/group = nobody/group = nginx/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php7/php-fpm.conf \
-    && sed -i "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php7/php-fpm.d/www.conf
+    && sed -i "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php7/php-fpm.d/www.conf \
+    && sed -i "s/;env/env/g" /etc/php7/php-fpm.d/www.conf
 
 ## Don't setup ENTRYPOINT, it is set to s6 superviser in alpine-s6-base image, see Dockerfile of alpine-s6-base image
