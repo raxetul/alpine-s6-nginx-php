@@ -1,0 +1,29 @@
+sudo: required
+services:
+        - docker
+language: bash
+script:
+        # build amd64
+        - echo "BUILDING FOR AMD64 ARCHITECTURE ---------------------------------------------------------"
+        - docker build --build-arg TAG=amd64-edge -t $DOCKER_USER/$REPO_NAME:amd64-edge .
+        # push image
+        - . docker_push amd64-edge
+        - echo "-----------------------------------------------------------------------------------------"
+
+        - echo "REGISTERING QEMU FOR CROSS BUILD *********************************************************"
+        # prepare qemu
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset      
+
+        - echo "BUILDING FOR ARHMF ARCHITECTURE ---------------------------------------------------------"
+        # build arm32v7
+        - docker build --build-arg TAG=armhf-edge -t $DOCKER_USER/$REPO_NAME:armhf-edge .
+        #push image
+        - . docker_push armhf-edge
+        - echo "-----------------------------------------------------------------------------------------"
+        
+        - echo "BUILDING FOR AARCH64 ARCHITECTURE -------------------------------------------------------"
+        # build aarch64
+        - docker build --build-arg TAG=aarch64-edge -t $DOCKER_USER/$REPO_NAME:aarch64-edge .
+        #push image
+        - . docker_push aarch64-edge
+        - echo "-----------------------------------------------------------------------------------------"

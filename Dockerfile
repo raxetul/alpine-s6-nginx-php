@@ -1,4 +1,5 @@
-FROM raxetul/alpine-s6-nginx
+ARG TAG=amd64
+FROM raxetul/alpine-s6-nginx:$TAG
 MAINTAINER Emrah URHAN <raxetul@gmail.com>
 
 RUN apk update && apk add --no-cache \
