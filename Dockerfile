@@ -21,7 +21,7 @@ RUN apk update && apk add --no-cache \
       php7-mysqli \
       php7-odbc \
       php7-openssl \
-      php7-pcntl
+      php7-pcntl \
       php7-pdo \
       php7-pdo_dblib \
       php7-pdo_mysql \
