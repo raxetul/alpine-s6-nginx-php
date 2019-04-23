@@ -47,6 +47,7 @@ ADD php-fpm /s6/php-fpm
 RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && chown root /s6/php-fpm/run /s6/php-fpm/finish \
     && mkdir -p /run/nginx && touch /run/nginx/nginx.pid \
+    && echo "Fixing www.conf user and group settings, etc.. ----------" \
     && sed -i "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;listen.group = nobody/listen.group = nginx/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/user = nobody/user = nginx/g" /etc/php7/php-fpm.d/www.conf \
@@ -54,12 +55,13 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php7/php-fpm.conf \
     && sed -i "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;env/env/g" /etc/php7/php-fpm.d/www.conf \
-    && echo "opcache.enable=1" >> /etc/php7/php.ini \
-    && echo "opcache.enable_cli=1" >> /etc/php7/php.ini \
-    && echo "opcache.interned_strings_buffer=8" >> /etc/php7/php.ini \
-    && echo "opcache.max_accelerated_files=10000" >> /etc/php7/php.ini \
-    && echo "opcache.memory_consumption=128" >> /etc/php7/php.ini \
-    && echo "opcache.save_comments=1" >> /etc/php7/php.ini \
-    && echo "opcache.revalidate_freq=1" >> /etc/php7/php.ini
+    && echo "Enabling OPCache ----------" \
+    && sed -i "s/;opcache.enable=1/opcache.enable=1/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.enable_cli=0/opcache.enable_cli=1/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.interned_strings_buffer=8/opcache.interned_strings_buffer=8/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.max_accelerated_files=10000/opcache.max_accelerated_files=10000/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.memory_consumption=128/opcache.memory_consumption=128/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.save_comments=1/opcache.save_comments=1/g" /etc/php7/php.ini \
+    && sed -i "s/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/g" /etc/php7/php.ini
 
 ## Don't setup ENTRYPOINT, it is set to s6 superviser in alpine-s6-base image, see Dockerfile of alpine-s6-base image
