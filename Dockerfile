@@ -57,7 +57,7 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && echo "opcache.enable=1" >> /etc/php7/php.ini \
     && echo "opcache.enable_cli=1" >> /etc/php7/php.ini \
     && echo "opcache.interned_strings_buffer=8" >> /etc/php7/php.ini \
-    && echo "opcache.max_accelerated_files=5000" >> /etc/php7/php.ini \
+    && echo "opcache.max_accelerated_files=10000" >> /etc/php7/php.ini \
     && echo "opcache.memory_consumption=128" >> /etc/php7/php.ini \
     && echo "opcache.save_comments=1" >> /etc/php7/php.ini \
     && echo "opcache.revalidate_freq=1" >> /etc/php7/php.ini
