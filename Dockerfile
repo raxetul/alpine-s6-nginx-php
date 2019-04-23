@@ -3,6 +3,7 @@ FROM raxetul/alpine-s6-nginx:$TAG
 MAINTAINER Emrah URHAN <raxetul@gmail.com>
 
 RUN apk update && apk add --no-cache \
+      php7 \
       php7-bcmath \
       php7-bz2 \
       php7-curl \
@@ -29,6 +30,7 @@ RUN apk update && apk add --no-cache \
       php7-pdo_odbc \
       php7-pdo_pgsql \
       php7-pdo_sqlite \
+      php7-pecl-imagick \
       php7-posix \
       php7-session \
       php7-simplexml \
