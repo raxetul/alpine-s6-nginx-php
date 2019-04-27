@@ -30,6 +30,7 @@ RUN apk update && apk add --no-cache \
       php7-pdo_odbc \
       php7-pdo_pgsql \
       php7-pdo_sqlite \
+      php7-pecl-apcu \
       php7-pecl-imagick \
       php7-posix \
       php7-session \
@@ -64,6 +65,8 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && sed -i "s/;opcache.max_accelerated_files=10000/opcache.max_accelerated_files=10000/g" /etc/php7/php.ini \
     && sed -i "s/;opcache.memory_consumption=128/opcache.memory_consumption=128/g" /etc/php7/php.ini \
     && sed -i "s/;opcache.save_comments=1/opcache.save_comments=1/g" /etc/php7/php.ini \
-    && sed -i "s/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/g" /etc/php7/php.ini
+    && sed -i "s/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/g" /etc/php7/php.ini \
+    && echo "apc.enabled=1" >>  /etc/php7/conf.d/apcu.ini \
+    && echo "apc.enable_cli=1" >>  /etc/php7/conf.d/apcu.ini
 
 ## Don't setup ENTRYPOINT, it is set to s6 superviser in alpine-s6-base image, see Dockerfile of alpine-s6-base image
