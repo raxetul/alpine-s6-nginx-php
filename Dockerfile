@@ -51,10 +51,13 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && chown root /s6/php-fpm/run /s6/php-fpm/finish \
     && mkdir -p /run/nginx && touch /run/nginx/nginx.pid \
     && echo "Fixing www.conf user and group settings, etc.. ----------" \
-    && sed -i "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php7/php-fpm.d/www.conf \
-    && sed -i "s/;listen.group = nobody/listen.group = nginx/g" /etc/php7/php-fpm.d/www.conf \
-    && sed -i "s/user = nobody/user = nginx/g" /etc/php7/php-fpm.d/www.conf \
-    && sed -i "s/group = nobody/group = nginx/g" /etc/php7/php-fpm.d/www.conf \
+
+    # && sed -i "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php7/php-fpm.d/www.conf \
+    # && sed -i "s/;listen.group = nobody/listen.group = nginx/g" /etc/php7/php-fpm.d/www.conf \
+    # && sed -i "s/user = nobody/user = nginx/g" /etc/php7/php-fpm.d/www.conf \
+    # && sed -i "s/group = nobody/group = nginx/g" /etc/php7/php-fpm.d/www.conf \
+
+
     && sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php7/php-fpm.conf \
     && sed -i "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;env/env/g" /etc/php7/php-fpm.d/www.conf \
@@ -68,5 +71,7 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && sed -i "s/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/g" /etc/php7/php.ini \
     && echo "apc.enabled=1" >>  /etc/php7/conf.d/apcu.ini \
     && echo "apc.enable_cli=1" >>  /etc/php7/conf.d/apcu.ini
+
+VOLUME /etc/php7/php.ini
 
 ## Don't setup ENTRYPOINT, it is set to s6 superviser in alpine-s6-base image, see Dockerfile of alpine-s6-base image
