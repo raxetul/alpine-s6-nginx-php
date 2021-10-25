@@ -43,7 +43,7 @@ RUN apk update && apk add --no-cache \
       php7-zip \
       php7-zlib \
     && rm -rf /var/cache/apk/*
-## Feed backs for missing php modules are welcomed.
+## Feedbacks for missing php modules are welcomed.
 
 ADD php-fpm /s6/php-fpm
 
