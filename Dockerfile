@@ -37,6 +37,7 @@ RUN apk update && apk add --no-cache \
     php8-simplexml \
     php8-soap \
     php8-sqlite3 \
+    php8-xml \
     php8-xmlreader \
     php8-xmlwriter \
     php8-zip \
