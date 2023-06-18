@@ -3,4 +3,4 @@ exec 2>&1 # pipe stderr to stdout
 echo "STARTED SERVICE: php-fpm"
 ## Add your service task command below
 ## Call your service with exec command
-exec php-fpm8
+exec php-fpm82

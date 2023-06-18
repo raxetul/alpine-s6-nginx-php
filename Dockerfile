@@ -68,6 +68,4 @@ RUN chmod +x /s6/php-fpm/run /s6/php-fpm/finish \
     && echo "apc.enabled=1" >>  /etc/php82/conf.d/apcu.ini \
     && echo "apc.enable_cli=1" >>  /etc/php82/conf.d/apcu.ini
 
-VOLUME /etc/php82/php.ini
-
 ## Don't setup ENTRYPOINT, it is set to s6 superviser in alpine-s6-base image, see Dockerfile of alpine-s6-base image
