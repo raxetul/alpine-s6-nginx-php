@@ -9,6 +9,7 @@ RUN apk update && apk add --no-cache \
     php82-curl \
     php82-ctype \
     php82-dom \
+    php82-exif \
     php82-fileinfo \
     php82-fpm \
     php82-gd \
@@ -36,6 +37,7 @@ RUN apk update && apk add --no-cache \
     php82-simplexml \
     php82-soap \
     php82-sqlite3 \
+    php82-sysvsem \
     php82-xml \
     php82-xmlreader \
     php82-xmlwriter \
