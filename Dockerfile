@@ -32,6 +32,7 @@ RUN apk update && apk add --no-cache \
     php82-pdo_sqlite \
     php82-pecl-apcu \
     php82-pecl-imagick \
+    php82-pecl-redis \
     php82-posix \
     php82-session \
     php82-simplexml \
