@@ -3,6 +3,14 @@ FROM raxetul/alpine-s6-nginx
 LABEL maintainer="Emrah URHAN <raxetul@gmail.com>"
 
 RUN apk update && apk add --no-cache \
+    imagemagick-heic \
+    imagemagick-jpeg \
+    imagemagick-jxl \
+    imagemagick-pdf \
+    imagemagick-raw \
+    imagemagick-svg \
+    imagemagick-tiff \
+    imagemagick-webp \
     php82 \
     php82-bcmath \
     php82-bz2 \
