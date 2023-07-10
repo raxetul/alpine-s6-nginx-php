@@ -5,7 +5,6 @@ LABEL maintainer="Emrah URHAN <raxetul@gmail.com>"
 RUN apk update && apk add --no-cache \
     imagemagick-heic \
     imagemagick-jpeg \
-    imagemagick-jxl \
     imagemagick-pdf \
     imagemagick-raw \
     imagemagick-svg \
