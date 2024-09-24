@@ -44,6 +44,7 @@ RUN apk update && apk add --no-cache \
     php82-session \
     php82-simplexml \
     php82-soap \
+    php82-sodium \
     php82-sqlite3 \
     php82-sysvsem \
     php82-xml \
