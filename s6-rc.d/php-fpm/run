@@ -1,0 +1,4 @@
+#!/command/with-contenv sh
+echo "STARTED SERVICE: php-fpm"
+## -F keeps php-fpm in the foreground so s6 can supervise it.
+exec php-fpm84 -F
