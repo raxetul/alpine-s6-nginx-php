@@ -1,8 +1,7 @@
-version: '2'
-
 services:
   nginx:
     container_name: nginx-php
+    build: .
     image: alpine-s6-nginx-php
     volumes:
       - ./conf:/conf
