@@ -26,7 +26,11 @@ jobs:
         id: alpine
         run: |
           base=$(awk 'toupper($1) == "FROM" { print $2; exit }' Dockerfile)
-          full=$(docker run --rm "$base" cat /etc/alpine-release | tr -d '[:space:]')
+          full=$(docker run --rm --entrypoint cat "$base" /etc/alpine-release | tr -d '[:space:]')
+          case "$full" in
+            [0-9]*.[0-9]*.[0-9]*) ;;
+            *) echo "::error::unexpected alpine release string: '$full'" >&2; exit 1 ;;
+          esac
           echo "full=$full" >> "$GITHUB_OUTPUT"
           echo "minor=${full%.*}" >> "$GITHUB_OUTPUT"
 
