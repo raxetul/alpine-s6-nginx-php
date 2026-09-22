@@ -3,7 +3,7 @@ FROM raxetul/alpine-s6-nginx
 LABEL maintainer="Emrah URHAN <raxetul@gmail.com>"
 
 ## Single source of truth for the PHP version. It is the Alpine package
-## suffix (no dot): 84 -> php84 / php-fpm84 / /etc/php84. Override at build
+## suffix (no dot): 85 -> php85 / php-fpm85 / /etc/php85. Override at build
 ## time, e.g. `docker build --build-arg PHP_VERSION=84 .`, provided the
 ## matching php<VER>-* packages exist in the pinned Alpine release. For
 ## PHP <= 8.4 you must also add the matching php<VER>-opcache package back
