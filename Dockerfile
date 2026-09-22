@@ -4,9 +4,11 @@ LABEL maintainer="Emrah URHAN <raxetul@gmail.com>"
 
 ## Single source of truth for the PHP version. It is the Alpine package
 ## suffix (no dot): 84 -> php84 / php-fpm84 / /etc/php84. Override at build
-## time, e.g. `docker build --build-arg PHP_VERSION=83 .`, provided the
-## matching php<VER>-* packages exist in the pinned Alpine release.
-ARG PHP_VERSION=84
+## time, e.g. `docker build --build-arg PHP_VERSION=84 .`, provided the
+## matching php<VER>-* packages exist in the pinned Alpine release. For
+## PHP <= 8.4 you must also add the matching php<VER>-opcache package back
+## to the apk add list below, because only php85 has OPcache built in.
+ARG PHP_VERSION=85
 ## Persist it to the image env so the s6 run script (with-contenv) can pick
 ## the right php-fpm<VER> binary at runtime.
 ENV PHP_VERSION=${PHP_VERSION}
@@ -36,7 +38,6 @@ RUN apk add --no-cache \
     php${PHP_VERSION}-mbstring \
     php${PHP_VERSION}-mysqli \
     php${PHP_VERSION}-odbc \
-    php${PHP_VERSION}-opcache \
     php${PHP_VERSION}-openssl \
     php${PHP_VERSION}-pcntl \
     php${PHP_VERSION}-pdo \
